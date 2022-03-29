@@ -1,0 +1,42 @@
+    <% for (var i = user.posts.length - 1; i >= 0; i--){ %>
+        <article class="hap-container" id=<%= user.posts[i].id %>>
+            <a class="hap-poster" href=<%= `/user/${user.id}` %>> <%= user.username %> </a>
+            <img class="hap-thumb" src=<%= user.profilePic %>>
+            <section class="hap-main">
+                <% if(user.posts[i].media != null){ %>
+                <img class="hap-img" src= <%= `../uploads/${user.posts[i].media}` %>>
+                <% } %>	
+                <div class="hap-content">    
+                    <p> <%= user.posts[i].content %> </p>
+                </div>
+            </section>
+            <section class="hap-info">
+                <p class="hap-labambas">labambas <%= user.posts[i].labambas%> </p>
+                <p class="hap-ccms">ccms <%= user.posts[i].ccms%></p>
+                <button class="labamba-post-btn">labamba&#129305;</button>
+                <button class="ccms-post-btn">ccms&#128579;</button>
+                <p class="hap-date"> Posted: <%= user.posts[i].posted.getMonth() + 1 %> / <%= user.posts[i].posted.getFullYear() %> </p>
+            </section>
+            <section class="hap-comments">
+                <h3>Discussion</h3>
+                <div class="post-comment-container">
+                    <form action= <%= `/posts/${user.posts[i].id}/comment` %> method="post">
+                        <textarea name="comment" placeholder="You tell 'em <%= activeUser %>"></textarea>
+                        <div class="submit-comment">
+                            <input type="submit">
+                        </div>
+                    </form>
+                </div>
+                <% for(var j = user.posts[i].comments.length - 1; j >= 0; j--) { %>
+                <div class="comment-container">
+                    <img class="comment-thumb" width="50" height="50" src=<%= user.posts[i].comments[j].commenter.profilePic %>>
+                    <a class="comment-username" href=<%=`/user/${user.posts[i].comments[j].commenter.id}`%>><%= user.posts[i].comments[j].commenter.username%></a>
+                    <p class="comment"><%= user.posts[i].comments[j].comment %></p>
+                </div>
+                    <% if(j < user.posts[i].comments.length - 9) { %> 
+                        <%break%>
+                    <% } %>
+                <% } %>
+            </section>
+        </article>	
+    <% } %>

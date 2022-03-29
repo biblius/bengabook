@@ -1,0 +1,62 @@
+* {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+main {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+    background-color: rgb(245, 245, 245);
+    width: 1200px;
+    margin: auto;
+}
+
+h3 {
+    width: fit-content;
+    margin: 10px auto;
+}
+
+.user-images {
+    display: flex;
+    flex-flow: row wrap;
+    gap: 10px;
+    justify-content: center;
+    margin: 10px auto;
+}
+
+.upload-pic {
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    margin: 10px auto;   
+}
+
+.upload-pic h3 {
+    width: fit-content;
+    margin: auto;
+}
+
+.upload-pic form {
+    display: flex;
+    justify-content: center;
+    flex-flow: column wrap;
+    width: 100%;
+}
+
+#upload-pic-label {
+    width: fit-content;
+    margin: auto;
+}
+
+#upload-pic-label:hover {
+    cursor: pointer;
+}
+
+#upload-pic-btn {
+    width: fit-content;
+    margin: auto;
+}
+
+.or {
+    width: fit-content;
+    margin: auto;
+}

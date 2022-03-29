@@ -1,0 +1,49 @@
+main {
+    margin: auto;
+    padding-top: 5rem;
+}
+
+.search-container {
+    list-style: none;
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.search-result {
+    justify-content: center;
+    width: 200px;
+    height: 30%;
+    margin: 5px auto;
+}
+
+.img-container {
+    overflow: hidden;
+    margin: auto;
+    box-sizing: border-box;
+}
+
+.profile-thumb {
+    width: 200px;
+    height: 200px;
+}
+
+.info-container {
+    width: 80%;
+}
+
+.search-result p {
+    text-align: center;
+    width: fit-content;
+    margin: auto;
+}
+
+.interact {
+    text-align: center;
+    width: fit-content;
+    margin: auto;
+}
+.username {
+    text-align: center;
+    width: fit-content;
+    margin: auto;
+}

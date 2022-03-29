@@ -1,0 +1,45 @@
+* {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+main {
+    padding-top: 5rem;
+    width: 1200px;
+    margin: auto;
+}
+
+.form-container {
+    text-align: center;
+    width: 600px;
+    margin: auto;
+}
+
+form {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 100%;
+    row-gap: 10px;
+    column-gap: 10px;
+}
+
+input {
+    width: 200px;
+}
+
+
+.form-group {
+    display: block;
+    text-align: center;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+label {
+    width: 100%;
+}
+
+.redirect {
+    width: fit-content;
+    margin: 50px auto;
+}

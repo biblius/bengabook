@@ -1,0 +1,17 @@
+.images {
+    display: flex;
+    width: 100%;
+    flex-flow: row wrap;
+}
+
+.img-container {
+    box-sizing: border-box;
+    width: 50%;
+    height: 300px;
+}
+
+.img-container img {
+    margin: auto;
+    width: 95%;
+    height: 95%;
+}

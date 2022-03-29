@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>&#129305; <%= activeUser %> </title>
+	<link rel="stylesheet" href="../css/body.css">
+	<link rel="stylesheet" href="../css/profile.css">
+	<link rel="stylesheet" href="../css/components/haps.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<script defer type="module" src="../js/profile-active-user.js"></script>
+</head>
+
+<body>
+	<header>
+		<%- include('components/header') %>
+	</header>
+
+	<aside class="user-dash">
+		<div class="pic-container">
+			<img class="profile-pic" src=<%=user.profilePic %> width="250" height="250">
+			<nav class="change-pic">
+				<a href="/changePic"><button class="update-profile-pic">Change<i class="fa fa-camera"></i></button></a>
+			</nav>
+		</div>
+		<section class="user-info">
+			<h1 class="username">
+				<%= user.username %>
+			</h1>
+			<section class="user-about">
+				<h3>About <abbr title="Edit About"><i class="material-icons edit-about-btn" style="font-size:16px">edit</i></abbr></h3>
+				<p> <%= user.about %> </p>
+			</section>
+			<section class="user-friends">
+				<h3>Friends</h3>
+				<ul class="friend-list"></ul>
+			</section>
+		</section>
+		<h3>Images</h3>
+		<div class="upload-pic">
+			<p>Upload picture</p>
+			<form enctype="multipart/form-data" action="/uploadPic" method="post">
+				<label id="upload-pic-label" for="upload-pic"><i class="fa fa-camera-retro fa-5x upload-pic-label"></i></label>
+				<input accept="image/*" id="upload-pic" type="file" name="pic" style="display: none" hidden required/>
+				<input id="upload-pic-btn"type="submit" value="Upload">
+			</form>
+		</div>
+		<%- include ('components/profile-images', {user: user, activeUser: activeUser}) %>
+	</aside>
+
+	<main>
+		<section class="post-hap">
+			<form enctype="multipart/form-data" class="postHap" action="/postHap" method="post">
+				<textarea id="content" name="content" placeholder="What's happening, <%= user.username %>?"></textarea>
+				<label id="file-label" for="file"><i class="fa fa-camera"></i></label>
+				<input accept="image/*" id="file" type="file" name="media" style="display: none" hidden>
+				<input class="submit-btn" type="submit">
+				   <!-- <img id="formImg" alt="your image"> -->
+			</form>
+		</section>
+		<section class="haps">
+			<%- include ('components/profile-haps', {user: user, activeUser: activeUser}) %>
+		</section>
+	</main>
+</body>
+
+</html>

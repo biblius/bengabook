@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>&#129305; <%= user.username %> </title>
+	<link rel="stylesheet" href="../css/body.css">
+	<link rel="stylesheet" href="../css/profile.css">
+	<link rel="stylesheet" href="../css/components/haps.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<script defer type="module" src="../js/profile.js"></script>
+</head>
+
+<body>
+	<header>
+		<%- include('components/header') %>
+	</header>
+	<aside class="user-dash">
+		<div class="pic-container">
+			<img class="profile-pic" src=<%= user.profilePic %> width="250" height="250">
+		</div>
+		<section class="user-info">
+			<h1 class="username"> <%= user.username %> </h1>
+			<section class="user-about">
+				<h3>About</h3>
+				<p> <%= user.about %> </p>
+			</section>
+			<section class="user-friends">
+				<h3>Friends</h3>
+				<ul class="friend-list"></ul>
+			</section>
+		</section>
+			<h3>Images</h3>
+			<%- include ('components/profile-images', {user: user}) %>
+	</aside>
+
+	<main>
+		<section class="user-haps">
+			<%- include ('components/profile-haps', {user: user, activeUser: activeUser}) %>
+		</section>
+	</main>
+</body>
+
+</html>

@@ -1,0 +1,11 @@
+* {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+main {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+    background-color: rgb(245, 245, 245);
+    width: 1200px;
+    margin: auto;
+}

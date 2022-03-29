@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>&#129305; Change Pic</title>
+    <link rel="stylesheet" href="../css/body.css">
+    <link rel="stylesheet" href="../css/changePic.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script defer type="module" src="../js/changePic.js"></script>
+</head>
+
+<body>
+    <header>
+        <%- include('components/header') %>
+    </header>
+    <main>
+        <h3>Choose from pictures</h3>
+        <section class="user-images">
+            <% if(user.imgs.length===0) { %>
+                <p>You have no pictures :(</p>
+                <% } else { %>
+                    <% for(var i=0; i < user.imgs.length; i++){ %>
+                        <% if(`http://localhost:4000/uploads/${user.imgs[i]}` !=user.profilePic) { %>
+                            <div class="pic-container">
+                                <img class="profile-pic" src=<%=`/uploads/${user.imgs[i]}` %> width="250" height="250">
+                            </div>
+                            <% }}} %>
+        </section>
+        <p class="or">or</p>
+        <div class="upload-pic">
+            <h3>Upload Image</h3>
+			<form enctype="multipart/form-data" action="/uploadPic" method="post">
+				<label id="upload-pic-label" for="upload-pic"><i class="fa fa-camera-retro fa-5x upload-pic-label"></i></label>
+				<input accept="image/*" id="upload-pic" type="file" name="pic" style="display: none" hidden required/>
+				<input id="upload-pic-btn"type="submit" value="Upload">
+			</form>
+		</div>
+        </aside>
+    </main>
+</body>
+
+</html>

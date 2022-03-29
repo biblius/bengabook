@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>&#129305; Bengabook</title>
+    <script defer type="module" src="../js/home.js"></script>
+    <link rel="stylesheet" href="../css/body.css">
+    <link rel="stylesheet" href="../css/home.css">
+    <link rel="stylesheet" href="../css/components/haps.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+    <header>
+        <%- include('components/header') %>
+    </header>
+
+    <main>
+        <form enctype="multipart/form-data" class="postHap" action="/postHap" method="post">
+            <textarea id="content" name="content" placeholder="What's happening, <%= user.username %>?"></textarea>
+            <label id="file-label" for="file"><i class="fa fa-camera"></i></label>
+            <input accept="image/*" id="file" type="file" name="media" style="display: none" hidden>
+            <input class="submit-btn" type="submit">
+               <!-- <img id="formImg" alt="your image"> -->
+        </form>
+        <section class="haps">
+            <% for (var i = posts.length - 1; i >= 0; i--){ %>
+                <% for (var k = 0; k < user.friends.length; k++){ %>
+                   <% if(posts[i].poster.id == user.friends[k] || posts[i].poster.id == user.id){ %>
+                        <article class="hap-container" id=<%= posts[i].id %>>
+                            <a class="hap-poster" href=<%= `/user/${posts[i].poster.id}` %>><%=posts[i].poster.username%></a>
+                            <img class="hap-thumb"src=<%= posts[i].poster.profilePic %> width="100" height="100">
+                            <section class="hap-main">
+                                <% if(posts[i].media != null){ %>
+                                    <img class="hap-img" src= <%= `../uploads/${posts[i].media}` %>>
+                                <% } %>
+                                <div class="hap-content">    
+                                    <p> <%= posts[i].content %> </p>
+                                </div>
+                            </section>
+                            <section class="hap-info">
+                                <p class="hap-labambas">labambas <%= posts[i].labambas%> </p>
+                                <p class="hap-ccms">ccms <%= posts[i].ccms%></p>
+                                <button class="labamba-post-btn">labamba&#129305;</button>
+                                <button class="ccms-post-btn">ccms&#128579;</button>
+                                <p class="hap-date"> Posted: <%= posts[i].posted.getMonth() + 1 %> / <%= posts[i].posted.getFullYear() %> </p>
+                            </section>
+                            <section class="hap-comments">
+                                <h3>Discussion</h3>
+                                <div class="post-comment-container">
+                                    <form action= <%= `/posts/${posts[i].id}/comment` %> method="post">
+                                        <textarea name="comment" placeholder="You tell 'em <%= user.username %>"></textarea>
+                                        <div class="submit-comment">
+                                            <input type="submit">
+                                        </div>
+                                    </form>
+                                </div>
+                            <% for(var j = posts[i].comments.length - 1; j >= 0; j--) { %>
+                            <div class="comment-container">
+                                <img class="comment-thumb" src=<%= posts[i].comments[j].commenter.profilePic %> width="50" height="50">
+                                <a class="comment-username" href=<%=`/user/${posts[i].comments[j].commenter.id}`%>><%= posts[i].comments[j].commenter.username%></a>
+                                <p class="comment"><%= posts[i].comments[j].comment %></p>
+                            </div>
+                            <% if(j < posts[i].comments.length - 9) { %> 
+                                <%break%>
+                            <% } %>
+                        <% } %>
+                        </section>
+				    </article>
+                    <%break%>
+                    <% } %>
+                <% } %>
+		    <% } %>
+        </section>
+    </main>
+    </body>
+        
+</html>

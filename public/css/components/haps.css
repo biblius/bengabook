@@ -1,0 +1,205 @@
+/***********************POST HAP***********************************/
+.postHap {
+    display: grid;
+    grid-template: 1fr 1fr 25px 1fr/ 1fr 1fr 1fr 1fr 1fr;
+    justify-content: center;
+    align-items: center;
+    width: 30%;
+    height: 150px;
+    margin: 1rem auto;
+
+}
+
+.postHap textarea {
+    grid-area: 1 / 2 / 3 / 5;
+    height: 80%;
+    resize: none;
+}
+
+#file-label {
+    grid-area: 4 / 3 / 4 / 4;
+    text-align: center;
+    align-self: center;
+    width: 30px;
+    height: 30px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    border-radius: 100%;
+    background-color: rgb(102, 152, 192);
+    margin: auto;
+}
+
+#file-label:hover {
+    cursor: pointer;
+    background-color: rgb(91, 135, 172);
+}
+
+.fa-camera {
+    padding-top: 6px;
+    margin: auto;
+}
+
+.fa-camera:hover {
+    cursor: pointer;
+}
+
+.submit-btn {
+    grid-area: 3 / 2 / 4 / 5;
+    margin: auto;
+    height: 70%;
+    width: 70%;
+}
+
+/*************************************************HAPS*****************************************/
+
+.haps {
+    display: flex;
+    row-gap: 10px;
+    flex-flow: row wrap;
+}
+
+.hap-container {
+    border-radius: 2px;
+    background-color: #d7e0eb;
+    overflow-wrap: break-word;
+    margin: auto;
+    width: 700px;
+    box-sizing: content-box;
+    height: 800px;
+    display: grid;
+    grid-template: 1fr 1fr 1fr 1fr 15% 15% 1fr/ 1fr 1fr 1fr 1fr 1fr 1fr;
+    gap: 5px;
+}
+
+
+/*************INFO CONTAINER**************/
+.hap-info {
+    gap: 10px;
+    display: flex;
+    grid-area: 7 / 1 / 8 / 3;
+    flex-flow: column wrap;
+}
+
+.hap-poster {
+    justify-self: center;
+    align-self: flex-end;
+    text-align: center;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    grid-area: 6 / 1 / 7 / 3;
+    z-index: 1;
+    text-decoration: none;
+}
+
+.hap-thumb {
+    grid-area: 6 / 1 / 7 / 3;
+    width: 25%;
+    height: 50%;
+    align-self: center;
+    justify-self: center;
+    margin: auto;
+}
+
+.hap-info p {
+    margin: auto;
+    width: fit-content;
+}
+
+.hap-info button {
+    align-self: center;
+    width: 50%;
+}
+
+
+
+/*********************MAIN*********************/
+
+.hap-main {
+    display: block;
+    width: 100%;
+    height: 100%;
+    overflow-y: scroll;
+    text-align: center;
+    justify-self: center;
+    align-self: center;
+    grid-area: 1 / 1 / 6 / 7;
+}
+
+.hap-main::-webkit-scrollbar{
+    display: none;
+}
+
+.hap-content {
+    width: 100%;
+    overflow-wrap: break-word;
+    overflow: hidden;
+}
+
+.hap-img {
+    margin-top: 5px;
+    width: 80%;
+    height: 80%;
+}
+
+/**********************COMMENTS*********************/
+
+.post-comment-container {
+    display: flex;
+    justify-content: center;
+}
+
+.hap-comments h3 {
+    text-align: center;
+}
+
+.hap-comments textarea {
+    margin: auto;
+}
+
+.submit-comment {
+    width: fit-content;
+    margin: auto;
+}
+
+.hap-comments {
+    text-align: start;
+    justify-self: center;
+    overflow-wrap: break-word;
+    position: relative;
+    height: 100%;
+    width: 99%;
+    overflow-y: scroll;
+    grid-area: 6 / 3 / 8 / 7;
+}
+
+.comment-container {
+    display: block;
+    width: 100%;
+}
+
+.comment-container p {
+    overflow-wrap: break-word;
+    border-bottom: 1px solid rgb(190, 184, 184);
+}
+
+.hap-comments h3 {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+/* Track */
+.hap-comments::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+/* Handle */
+.hap-comments::-webkit-scrollbar-thumb {
+    background: #888;
+}
+
+/* Handle on hover */
+.hap-comments::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+.hap-comments::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+}

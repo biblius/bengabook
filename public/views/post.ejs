@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>&#129305; Post</title>
+        <link rel="stylesheet" href="../css/body.css">
+        <link rel="stylesheet" href="../css/post.css">
+    </head>
+
+<header>
+    <%- include('components/header') %>
+</header>
+
+<body>
+    <main>
+        <%console.log(post.comments[0].commenter)%>
+        <article class="hap-container" id=<%= post.id %>>
+                    <section class="hap-user-container">
+                        <img src=<%= post.poster.profilePic %> width="100" height="100">
+                        <a class="hap-poster" href=<%= `/user/${post.poster.id}` %>><%=post.poster.username%></a>
+                    </section>
+                    <section class="hap-main">
+                        <p class="hap-content"> <%= post.content %> </p>
+                        <% if(post.media != null){ %>
+                            <img class="hap-img" src= <%= `../uploads/${post.media}` %>>
+                        <% } %>
+                    </section>
+                    <section class="hap-info">
+                        <p class="hap-labambas">labambas <%= post.labambas%> </p>
+                        <p class="hap-ccms">ccms <%= post.ccms%></p>
+                        <button class="labamba-post-btn">labamba&#129305;</button>
+                        <button class="ccms-post-btn">ccms&#128579;</button>
+                        <p class="hap-date"> Posted: <%= post.posted.toDateString() %> </p>
+                    </section>
+                    <section class="hap-comments">
+                        <div class="post-comment-container">
+                            <form action= <%= `/posts/${post.id}/comment` %> method="post">
+                                <textarea name="comment" placeholder="You tell 'em <%= user.username %>"></textarea>
+                                <input type="submit">
+                            </form>
+                        </div>
+                        <% for(var j = post.comments.length - 1; j >= 0; j--) { %>
+                            <div class="comment-container">
+                                <a class="comment-username" href=<%=`/user/${post.comments[j].commenter.id}`%>><%= post.comments[j].commenter.username%></a>
+                                <img class="comment-thumb" src=<%= post.comments[j].commenter.profilePic %> width="50" height="50">
+                                <p class="comment"><%= post.comments[j].comment %></p>
+                            </div>
+                        <% } %>
+                    </section>
+				</article>
+    </main>
+</body>
+
+</html>

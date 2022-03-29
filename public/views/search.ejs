@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>&#129305; Search</title>
+    <link rel="stylesheet" href="../css/body.css">
+    <link rel="stylesheet" href="../css/search.css">
+    <script defer type="module" src="../js/search.js"></script>
+</head>
+
+<body>
+    <header>
+        <%- include('components/header') %>
+    </header>
+
+    <main>
+        <ul class="search-container">
+            <% if (users.length==0) { %>
+                <p>
+                    No matches! :(
+                </p>
+            <% } else { %>
+                <% for (var i=0; i < users.length; i++){ %>
+                    <% if (users[i].id != user.id) { %>
+                        <li class="search-result user-container" id=<%=`${users[i].id}` %>>
+                            <div class="img-container">
+                                <img src=<%=`${users[i].profilePic}` %> class="profile-thumb">
+                            </div>
+                                <p class="username"><%= users[i].username %> </p>
+                            <div class="interact">
+                                <% var g=0 %>
+                                <% for (var j=0; j < user.friends.length; j++) { %>
+                                    <% if(users[i].id===user.friends[j].id) { %>
+                                            <p class="befriended-p"> Befriended </p>
+                                            <% g=1 %>
+                                            <% break %>
+                                    <% } %>
+                                <% } %>
+                                <% if(g===0){ %>
+                                    <% for(var x=0; x < user.pendingRequests.length; x++) { %>
+                                        <% if(user.pendingRequests[x].to.toString()===users[i].id.toString()) { %>
+                                            <p class="request-sent-p"> Request sent </p>
+                                            <% g=1 %>
+                                            <%break%>
+                                        <% } %>
+                                        <% if(user.pendingRequests[x].from.toString()===users[i].id.toString()) { %>
+                                            <button class="accept-btn" id=<%=`acpt-${users[i].id}`%>>Accept</button>
+                                            <% g=1 %>
+                                            <%break%>
+                                        <% } %>
+                                    <% } %>
+                                <% } %>
+                                <% if(g===0) { %>
+                                    <button id=<%=users[i].id %> class="add-friend-btn">Befriend</button>
+                                <% } %>
+                                    <button class="view-user-profile">Profile</button>
+                                </div>
+                            </li>
+                    <% } %>
+                <% } %>
+            <% } %>
+        </ul>
+    </main>
+</body>
+
+</html>
