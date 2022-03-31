@@ -10,7 +10,7 @@ const storage = multer.diskStorage({
         cb(null, 'uploads')
     },
     filename: function (req, file, cb) {
-        cb(null, req.user.username + '-' + Date.now())
+        cb(null, req.user.username.replace(' ', '_') + '-' + req.user.id + '-' + Date.now())
     }
 })
 const upload = multer({ storage: storage });
@@ -40,11 +40,15 @@ router.use((req, res, next) => {
 ////////////////////////////pages////////////////////////
 router.get('/', async (req, res, next) => {
     try {
-        const user = await User.findById(req.user.id).populate('labambaPosts');
-        const posts = await Post.find().populate('poster');
-        for (let i = 0; i < posts.length; i++) {
-            for (let j = 0; j < posts[i].comments.length; j++) {
-                await posts[i].populate({ path: `comments.${j}.commenter`, select: ['username', 'profilePic'] });
+        const user = await User.findById(req.user.id)
+        const posts = [];
+        for (let i = 0; i < user.friends.length; i++) {
+            const friendPosts = await Post.find({ poster: user.friends[i] }).populate({path: 'poster', select: ['username', 'profilePic']})
+            for (let k = 0; k < friendPosts.length; k++) {
+                for (let j = 0; j < friendPosts[k].comments.length; j++) {
+                    await friendPosts[k].populate({ path: `comments.${j}.commenter`, select: ['username', 'profilePic'] });
+                }
+                posts.push(friendPosts[k]);
             }
         }
         return res.render('home', { user: user, posts: posts });
@@ -189,7 +193,6 @@ router.get('/changePic', async (req, res, next) => {
 });
 
 router.post('/uploadPic', upload.single('pic'), async (req, res, next) => {
-    console.log(req.query)
     if (req.query.setAsProfilePic === 'true') {
         await User.findByIdAndUpdate(req.user.id, { $push: { imgs: req.file.path.slice(8) }, profilePic: `http://localhost:4000/uploads/${req.file.path.slice(8)}` });
         return res.redirect('/profile');

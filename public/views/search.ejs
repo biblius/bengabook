@@ -16,9 +16,7 @@
     <main>
         <ul class="search-container">
             <% if (users.length==0) { %>
-                <p>
-                    No matches! :(
-                </p>
+                <p>No matches! :(</p>
             <% } else { %>
                 <% for (var i=0; i < users.length; i++){ %>
                     <% if (users[i].id != user.id) { %>
@@ -26,14 +24,14 @@
                             <div class="img-container">
                                 <img src=<%=`${users[i].profilePic}` %> class="profile-thumb">
                             </div>
-                                <p class="username"><%= users[i].username %> </p>
+                            <p class="username"><%= users[i].username %> </p>
                             <div class="interact">
                                 <% var g=0 %>
                                 <% for (var j=0; j < user.friends.length; j++) { %>
                                     <% if(users[i].id===user.friends[j].id) { %>
-                                            <p class="befriended-p"> Befriended </p>
-                                            <% g=1 %>
-                                            <% break %>
+                                        <p class="befriended-p"> Befriended </p>
+                                        <% g=1 %>
+                                        <% break %>
                                     <% } %>
                                 <% } %>
                                 <% if(g===0){ %>
@@ -53,9 +51,9 @@
                                 <% if(g===0) { %>
                                     <button id=<%=users[i].id %> class="add-friend-btn">Befriend</button>
                                 <% } %>
-                                    <button class="view-user-profile">Profile</button>
-                                </div>
-                            </li>
+                                <button class="view-user-profile">Profile</button>
+                            </div>
+                        </li>
                     <% } %>
                 <% } %>
             <% } %>

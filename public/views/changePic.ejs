@@ -30,7 +30,7 @@
         <p class="or">or</p>
         <div class="upload-pic">
             <h3>Upload Image</h3>
-			<form enctype="multipart/form-data" action="/uploadPic" method="post">
+			<form enctype="multipart/form-data" action="/uploadPic?setAsProfilePic=true" method="post">
 				<label id="upload-pic-label" for="upload-pic"><i class="fa fa-camera-retro fa-5x upload-pic-label"></i></label>
 				<input accept="image/*" id="upload-pic" type="file" name="pic" style="display: none" hidden required/>
 				<input id="upload-pic-btn"type="submit" value="Upload">
